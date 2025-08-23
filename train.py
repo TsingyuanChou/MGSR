@@ -463,59 +463,6 @@ def training_report_geo(tb_writer, iteration, Ll1, SSIM, dist_loss,normal_loss, 
         tb_writer.add_scalar('train_loss_patches/total_loss', total_loss.item(), iteration)
         tb_writer.add_scalar('iter_time', elapsed, iteration)
         tb_writer.add_scalar('total_points', scene.gaussians.get_xyz.shape[0], iteration)
-    '''
-    # Report test and samples of training set
-    if iteration in testing_iterations:
-        torch.cuda.empty_cache()
-        validation_configs = ({'name': 'test', 'cameras' : scene.getTestCameras()}, 
-                              {'name': 'train', 'cameras' : [scene.getTrainCameras()[idx % len(scene.getTrainCameras())] for idx in range(5, 30, 5)]})
-
-        for config in validation_configs:
-            if config['cameras'] and len(config['cameras']) > 0:
-                l1_test = 0.0
-                psnr_test = 0.0
-                for idx, viewpoint in enumerate(config['cameras']):
-                    render_pkg = renderFunc(viewpoint, scene.gaussians, *renderArgs)
-                    image = torch.clamp(render_pkg["render"], 0.0, 1.0)
-                    gt_image = torch.clamp(viewpoint.original_image.to("cuda"), 0.0, 1.0)
-                    if tb_writer and (idx < 5):
-                        from geo_utils.general_utils import colormap
-                        depth = render_pkg["surf_depth"]
-                        norm = depth.max()
-                        depth = depth / norm
-                        depth = colormap(depth.cpu().numpy()[0], cmap='turbo')
-                        tb_writer.add_images(config['name'] + "_view_{}/depth".format(viewpoint.image_name), depth[None], global_step=iteration)
-                        tb_writer.add_images(config['name'] + "_view_{}/render".format(viewpoint.image_name), image[None], global_step=iteration)
-
-                        try:
-                            rend_alpha = render_pkg['rend_alpha']
-                            rend_normal = render_pkg["rend_normal"] * 0.5 + 0.5
-                            surf_normal = render_pkg["surf_normal"] * 0.5 + 0.5
-                            tb_writer.add_images(config['name'] + "_view_{}/rend_normal".format(viewpoint.image_name), rend_normal[None], global_step=iteration)
-                            tb_writer.add_images(config['name'] + "_view_{}/surf_normal".format(viewpoint.image_name), surf_normal[None], global_step=iteration)
-                            tb_writer.add_images(config['name'] + "_view_{}/rend_alpha".format(viewpoint.image_name), rend_alpha[None], global_step=iteration)
-
-                            rend_dist = render_pkg["rend_dist"]
-                            rend_dist = colormap(rend_dist.cpu().numpy()[0])
-                            tb_writer.add_images(config['name'] + "_view_{}/rend_dist".format(viewpoint.image_name), rend_dist[None], global_step=iteration)
-                        except:
-                            pass
-
-                        if iteration == testing_iterations[0]:
-                            tb_writer.add_images(config['name'] + "_view_{}/ground_truth".format(viewpoint.image_name), gt_image[None], global_step=iteration)
-
-                    l1_test += l1_loss(image, gt_image).mean().double()
-                    psnr_test += psnr(image, gt_image).mean().double()
-
-                psnr_test /= len(config['cameras'])
-                l1_test /= len(config['cameras'])
-                print("\n[ITER {}] Evaluating {}: L1 {} PSNR {}".format(iteration, config['name'], l1_test, psnr_test))
-                if tb_writer:
-                    tb_writer.add_scalar(config['name'] + '/loss_viewpoint - l1_loss', l1_test, iteration)
-                    tb_writer.add_scalar(config['name'] + '/loss_viewpoint - psnr', psnr_test, iteration)
-
-        torch.cuda.empty_cache()
-    '''
         
 def training_report_ref(tb_writer, iteration, Ll1,SSIM, init_loss, loss, l1_loss, ref_map_smooth_loss, depth_smooth_loss, elapsed, testing_iterations, scene : refgs.ref_scene.Scene, renderFunc, renderArgs):
     if tb_writer:
@@ -527,57 +474,6 @@ def training_report_ref(tb_writer, iteration, Ll1,SSIM, init_loss, loss, l1_loss
         tb_writer.add_scalar('train_loss_patches/total_loss', loss.item(), iteration)
         tb_writer.add_scalar('iter_time', elapsed, iteration)
 
-    # Report test and samples of training set
-    '''
-    if iteration in testing_iterations:
-        torch.cuda.empty_cache()
-        # validation_configs = ({'name': 'test', 'cameras' : scene.getTestCameras()}, 
-        #                       {'name': 'train', 'cameras' : [scene.getTrainCameras()[idx % len(scene.getTrainCameras())] for idx in [23, 24, 30, 37, 45]]})
-        # typical_test_cameras = ['DSCF4707', 'DSCF4731', 'DSCF4819', 'DSCF4827', 'DSCF4851']
-        validation_configs = ({'name': 'test', 'cameras' : scene.getTestCameras()}, 
-                              {'name': 'train', 'cameras' : [scene.getTrainCameras()[idx % len(scene.getTrainCameras())] for idx in range(5, 30, 5)]})
-
-        for config in validation_configs:
-            if config['cameras'] and len(config['cameras']) > 0:
-                l1_test = 0.0
-                psnr_test = 0.0
-                for idx, viewpoint in enumerate(config['cameras']):
-                    render_package = renderFunc(viewpoint, scene.gaussians, *renderArgs)
-                    image = torch.clamp(render_package["render"], 0.0, 1.0)
-                    gt_image = torch.clamp(viewpoint.black_bg_image.to("cuda"), 0.0, 1.0)
-                    depth = render_package["out_depth"]
-                    depth = (depth - depth.min()) / (depth.max() - depth.min())
-
-                    ref_map = torch.clamp(render_package["trans_weights"], 0.0, 1.0)
-                    ref_color = torch.clamp(render_package["ref_color"], 0.0, 1.0)
-                    trans_color = torch.clamp(render_package["trans_color"], 0.0, 1.0)
-                    comp_ref_color = ref_map * ref_color
-                    image_python = trans_color + comp_ref_color
-                    # if tb_writer and ((config['name'] == 'test' and viewpoint.image_name in typical_test_cameras) or 
-                    #                   (config['name'] == 'train' and idx < 5)):
-                    if tb_writer and (idx < 5):
-                        tb_writer.add_images(config['name'] + "_view_{}/render".format(viewpoint.image_name), image[None], global_step=iteration)                        # tb_writer.add_images(config['name'] + "_view_{}/render_python".format(viewpoint.image_name), image_python[None], global_step=iteration)
-                        tb_writer.add_images(config['name'] + "_view_{}/ref_map".format(viewpoint.image_name), ref_map[None], global_step=iteration)
-                        tb_writer.add_images(config['name'] + "_view_{}/ref_color".format(viewpoint.image_name), ref_color[None], global_step=iteration)
-                        tb_writer.add_images(config['name'] + "_view_{}/trans_color".format(viewpoint.image_name), trans_color[None], global_step=iteration)
-                        tb_writer.add_images(config['name'] + "_view_{}/comp_ref_color".format(viewpoint.image_name), comp_ref_color[None], global_step=iteration)
-                        tb_writer.add_images(config['name'] + "_view_{}/depth".format(viewpoint.image_name), depth[None], global_step=iteration)
-                        if iteration == testing_iterations[0]:
-                            tb_writer.add_images(config['name'] + "_view_{}/ground_truth".format(viewpoint.image_name), gt_image[None], global_step=iteration)
-                    l1_test += l1_loss(image, gt_image).mean().double()
-                    psnr_test += psnr(image, gt_image).mean().double()
-                psnr_test /= len(config['cameras'])
-                l1_test /= len(config['cameras'])          
-                print("\n[ITER {}] Evaluating {}: L1 {} PSNR {}".format(iteration, config['name'], l1_test, psnr_test))
-                if tb_writer:
-                    tb_writer.add_scalar(config['name'] + '/loss_viewpoint - l1_loss', l1_test, iteration)
-                    tb_writer.add_scalar(config['name'] + '/loss_viewpoint - psnr', psnr_test, iteration)
-
-        if tb_writer:
-            tb_writer.add_histogram("scene/opacity_histogram", scene.gaussians.get_opacity, iteration)
-            tb_writer.add_scalar('total_points', scene.gaussians.get_xyz.shape[0], iteration)
-        torch.cuda.empty_cache()
-    '''
 
 if __name__ == "__main__":
     # Set up command line argument parser
