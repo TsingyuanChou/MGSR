@@ -1,6 +1,0 @@
-[submodule "submodules"]
-	path = submodules
-	url = https://github.com/TsingyuanChou/submodules.git
-[submodule "refgs/ref_submodules"]
-	path = refgs/ref_submodules
-	url = https://github.com/TsingyuanChou/ref_submodules.git
