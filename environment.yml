@@ -1,0 +1,29 @@
+name: MGSR
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - ffmpeg
+  - pillow=9.3.0
+  - pip=23.3.1
+  - python=3.11.4
+  - numpy=1.24.2
+  - pytorch=2.0.1+cu118
+  - torchvision=0.15.2+cu118
+  - typing_extensions=4.6.2
+  - cmake=3.22.0
+  - pip:
+    - open3d==0.18.0
+    - mediapy==1.1.2
+    - lpipsPyTorch
+    - scikit-image
+    - tqdm==4.66.2
+    - trimesh==4.7.1
+    - sub/diff-surfel-rasterization
+    - sub/simple-knn
+    - refgs/sub/diff-gaussian-rasterization
+    - plyfile==1.1.2
+    - opencv-python == 4.8.1.78
+    - tensorboard
