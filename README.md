@@ -37,10 +37,23 @@ If you run into any problems while installation, you may refer to the [vanilla 3
 ### Datasets Preparation
    (WIP)
    Datasets coming soon.
-### Simply Running and Reproducing
+### Simply Running
    ``` sh
    python train.py -s <Data_dir> -m <Output_dir>  # if synthetic data, use --geo_white_background
    python extract_mesh_tsdf.py -m <Output_dir>
    ```
+### Reproducing
+   ``` sh
+   bash scripts/run_oo3d.sh
+   bash scripts/run_refnerf.sh
+   bash scripts/run_DTU.sh
+   ```
 ##
 ![teaser](Figures/DTU_EXP.png)
+
+### Parallel Running
+(WIP) Coming soon.
+
+##Acknowledgement
+
+This work is partially built on [3DGS](https://github.com/graphdeco-inria/gaussian-splatting) and [2DGS](https://github.com/hbb1/2d-gaussian-splatting). For a fair comparison with GOF, the TSDF implementation in the paper is consistent with that of GOF, rather than TSDF used in 2DGS. The implementation of the TV loss follows [GS-IR](https://github.com/lzhnb/GS-IR).
