@@ -17,7 +17,7 @@ Novel view synthesis (NVS) and surface reconstruction (SR) are essential tasks i
 
 ## Setup
 **MGSR** is built on top of the [vanilla 3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting) and [2D Gaussian Splatting](https://github.com/hbb1/2d-gaussian-splatting). This project has been only tested on Ubuntu 20.04, NVIDIA A100 GPU(s), and CUDA-11.8. 
-If you run into any problems while installation, you may refer to the [vanilla 3DGS code base](https://github.com/graphdeco-inria/gaussian-splatting), which provides detailed installation instructions.
+If you run into any problem while installation, you may refer to the [vanilla 3DGS code base](https://github.com/graphdeco-inria/gaussian-splatting), which provides detailed installation instructions.
 
 ### Installation
 
@@ -54,6 +54,18 @@ If you run into any problems while installation, you may refer to the [vanilla 3
 ### Parallel Running
 (WIP) Coming soon.
 
-##Acknowledgement
+## Acknowledgement
 
-This work is partially built on [3DGS](https://github.com/graphdeco-inria/gaussian-splatting) and [2DGS](https://github.com/hbb1/2d-gaussian-splatting). For a fair comparison with GOF, the TSDF implementation in the paper is consistent with that of GOF, rather than TSDF used in 2DGS. The implementation of the TV loss follows [GS-IR](https://github.com/lzhnb/GS-IR).
+This work is partially built on [3DGS](https://github.com/graphdeco-inria/gaussian-splatting) and [2DGS](https://github.com/hbb1/2d-gaussian-splatting). For a fair comparison with GOF, the TSDF implementation in the paper is consistent with that of [GOF](https://github.com/autonomousvision/gaussian-opacity-fields), rather than TSDF used in 2DGS. The implementation of the TV loss follows [GS-IR](https://github.com/lzhnb/GS-IR). 
+If you find this work useful, please kindly cite our paper.
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{zhou2025mgsr,
+  title={MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelity Surface Reconstruction under Various Light Conditions},
+  author={Zhou, Qingyuan and Gong, Yuehu and Yang, Weidong and Li, Jiaze and Luo, Yeqi and Xu, Baixin and Li, Shuhao and Fei, Ben and He, Ying},
+  journal={arXiv preprint arXiv:2503.05182},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
