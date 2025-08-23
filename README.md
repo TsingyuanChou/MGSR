@@ -34,7 +34,9 @@ If you run into any problems while installation, you may refer to the [vanilla 3
    conda env create --file environment.yml
    conda activate MGSR
    ```
-
+### Datasets Preparation
+   (WIP)
+   Datasets will be uploaded soon.
 ### Simply Running and Reproducing
    ``` sh
    python train.py -s <Data_dir> -m <Output_dir>  # if synthetic data, use --geo_white_background
