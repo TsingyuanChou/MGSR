@@ -40,4 +40,5 @@ If you run into any problems while installation, you may refer to the [vanilla 3
    python train.py -s <Data_dir> -m <Output_dir>  # if synthetic data, use --geo_white_background
    python extract_mesh_tsdf.py -m <Output_dir>
    ```
-
+##
+![teaser](Figures/DTU_exp.png)
