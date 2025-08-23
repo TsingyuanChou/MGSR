@@ -1,0 +1,9 @@
+[submodule "sub/simple-knn"]
+	path = sub/simple-knn
+	url = https://github.com/TsingyuanChou/simple-knn.git
+[submodule "sub/diff-surfel-rasterization"]
+	path = sub/diff-surfel-rasterization
+	url = https://github.com/TsingyuanChou/diff-surfel-rasterization.git
+[submodule "refgs/sub/diff-gaussian-rasterization"]
+	path = refgs/sub/diff-gaussian-rasterization
+	url = https://github.com/TsingyuanChou/diff-gaussian-rasterization.git
