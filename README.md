@@ -21,7 +21,6 @@ If you run into any problems while installation, you may refer to the [vanilla 3
 
 ### Installation
 
-**Clone the Repository:**
 
    ``` sh
    git clone --recursive https://github.com/TsingyuanChou/MGSR.git
@@ -35,3 +34,5 @@ If you run into any problems while installation, you may refer to the [vanilla 3
    conda env create --file environment.yml
    conda activate MGSR
    ```
+
+### Simply Running and Reproducing
