@@ -22,7 +22,16 @@ If you run into any problems while installation, you may refer to the [vanilla 3
 ### Installation
 
 **Clone the Repository:**
+
    ``` sh
    git clone --recursive https://github.com/TsingyuanChou/MGSR.git
    cd MGSR
+
+   # if you have an environment used for 2DGS, use it
+   conda activate 2DGS
+   pip install refgs/sub/diff-gaussian-rasterization
+
+   # if not, create a new environment
+   conda env create --file environment.yml
+   conda activate MGSR
    ```
