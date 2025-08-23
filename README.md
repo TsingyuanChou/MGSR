@@ -41,4 +41,4 @@ If you run into any problems while installation, you may refer to the [vanilla 3
    python extract_mesh_tsdf.py -m <Output_dir>
    ```
 ##
-![teaser](Figures/DTU_exp.png)
+![teaser](Figures/DTU_EXP.png)
