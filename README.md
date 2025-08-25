@@ -92,6 +92,7 @@ Download the [OmniObject3D](https://github.com/omniobject3d/OmniObject3D) datase
 ## Acknowledgement
 
 This work is partially built on [3DGS](https://github.com/graphdeco-inria/gaussian-splatting) and [2DGS](https://github.com/hbb1/2d-gaussian-splatting). For a fair comparison with GOF, the TSDF implementation in the paper is consistent with that of [GOF](https://github.com/autonomousvision/gaussian-opacity-fields), rather than TSDF used in 2DGS. The implementation of the TV loss follows [GS-IR](https://github.com/lzhnb/GS-IR). 
+
 If you find this work useful, please kindly cite our paper.
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
