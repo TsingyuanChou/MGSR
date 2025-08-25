@@ -34,9 +34,45 @@ If you run into any problem while installation, you may refer to the [vanilla 3D
    conda env create --file environment.yml
    conda activate MGSR
    ```
-### Datasets Preparation
-   (WIP)
-   Datasets coming soon.
+## Dataset Preparation
+### Data Structure
+For real-world captured data:
+```
+<location>
+|---images
+|   |---<image 0>
+|   |---<image 1>
+|   |---...
+|---masks
+|   |---<image 0>
+|   |---<image 1>
+|   |---...
+|---sparse
+    |---0
+        |---cameras.bin
+        |---images.bin
+        |---points3D.bin
+```
+For synthetic data:
+```
+<location>
+|---images
+|   |---<image 0>
+|   |---<image 1>
+|   |---...
+|---masks
+|   |---<image 0>
+|   |---<image 1>
+|   |---...
+|---transforms_test.json
+|---transforms_train.json
+```
+### Sample Data
+Download the [OmniObject3D](https://github.com/omniobject3d/OmniObject3D) dataset used in this project [here](https://drive.google.com/file/d/1E27XNTDn6RPTGharJbLpCVjLT7VoGt54/view?usp=drive_link).
+
+30 synthetic scenes from the OmniObject3D dataset are included. Each scene contains 100 images, which are randomly split into train and test sets at a 9:1 ratio (i.e., the transforms.json file is randomly divided into transforms_train.json and transforms_test.json).
+
+
 ### Simply Running
    ``` sh
    python train.py -s <Data_dir> -m <Output_dir>  # if synthetic data, use --geo_white_background
