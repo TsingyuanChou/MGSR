@@ -25,5 +25,5 @@ dependencies:
     - sub/simple-knn
     - refgs/sub/diff-gaussian-rasterization
     - plyfile==1.1.2
-    - opencv-python == 4.8.1.78
+    - opencv-python==4.8.1.78
     - tensorboard
