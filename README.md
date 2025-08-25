@@ -72,7 +72,7 @@ Download the [OmniObject3D](https://github.com/omniobject3d/OmniObject3D) datase
 
 30 synthetic scenes from the OmniObject3D dataset are included. Each scene contains 100 images, which are randomly split into train and test sets at a 9:1 ratio (i.e., the transforms.json file is randomly divided into transforms_train.json and transforms_test.json).
 
-
+## Running
 ### Simply Running
    ``` sh
    python train.py -s <Data_dir> -m <Output_dir>  # if synthetic data, use --geo_white_background
@@ -81,7 +81,6 @@ Download the [OmniObject3D](https://github.com/omniobject3d/OmniObject3D) datase
 ### Reproducing
    ``` sh
    bash scripts/run_oo3d.sh
-   bash scripts/run_refnerf.sh
    bash scripts/run_DTU.sh
    ```
 ##
