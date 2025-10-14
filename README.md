@@ -10,6 +10,9 @@
 Qingyuan Zhou, Yuehu Gong, Weidong Yang, Jiaze Li, Yeqi Luo, Baixin Xu, Shuhao Li, Ben Fei, Ying He
 
 ##
+![poster](Figures/MGSR_poster.png)
+   
+##
 ![teaser](Figures/teaser.png)
 
 ## Abstract
