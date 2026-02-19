@@ -106,7 +106,7 @@ If you find this work useful, please kindly cite our paper.
   booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
   pages={27295--27304},
   year={2025}
-}
+
 }</code></pre>
   </div>
 </section>
