@@ -100,11 +100,13 @@ If you find this work useful, please kindly cite our paper.
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{zhou2025mgsr,
-  title={MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelity Surface Reconstruction under Various Light Conditions},
+    <pre><code>@inproceedings{zhou2025mgsr,
+  title={MGSR: 2D/3D mutual-boosted Gaussian splatting for high-fidelity surface reconstruction under various light conditions},
   author={Zhou, Qingyuan and Gong, Yuehu and Yang, Weidong and Li, Jiaze and Luo, Yeqi and Xu, Baixin and Li, Shuhao and Fei, Ben and He, Ying},
-  journal={arXiv preprint arXiv:2503.05182},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={27295--27304},
   year={2025}
+}
 }</code></pre>
   </div>
 </section>
